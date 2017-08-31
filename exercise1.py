@@ -55,4 +55,7 @@ ani = animation.FuncAnimation(
     interval=25,
     blit=True)
 
+plt.title('title!!!')
+plt.xlabel('distance (m)')
+plt.ylabel('amplitude')
 plt.show()
