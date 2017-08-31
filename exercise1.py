@@ -24,15 +24,35 @@ k = 2 * math.pi / lmbd # Calculate the wave-number
 x = 1000
 T = np.arange(0, 0.1, 0.001)
 u = np.exp((k * x - omega * T) * 1j)
-plt.plot(T, u.real)
+# plt.plot(T, u.real)
 
-plt.show()
+# plt.show()
 
 # second figure
 
 X = np.arange(-300, 300, 1)
 t = 0
 u = np.exp((k * X - omega * t) * 1j)
-plt.plot(X, u.real)
+# plt.plot(X, u.real)
+
+# plt.show()
+
+# animation!!!
+
+line, = ax.plot(X, u)
+
+def animate(t):
+    line.set_ydata(np.exp((k * X - omega * t) * 1j))
+    return line,
+
+def init():
+    line.set_ydata(np.ma.array(X, mask=True))
+    return line,
+
+ani = animation.FuncAnimation(
+    fig, animate, np.arange(1, 100, 0.001),
+    init_func=init,
+    interval=25,
+    blit=True)
 
 plt.show()
